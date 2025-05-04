@@ -1,7 +1,5 @@
 # 🚀 Kubernetes
 
-## 📦 Use Case
-
 Kubernetes (K8s) is a powerful container orchestration platform designed to deploy, scale, and manage modern applications. It is ideal for:
 
 * Microservices architecture 🧩
