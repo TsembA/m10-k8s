@@ -1,4 +1,4 @@
-# 🚀 Kubernetes
+# 🚀 Kubernetes + Project
 
 Kubernetes (K8s) is a powerful container orchestration platform designed to deploy, scale, and manage modern applications. It is ideal for:
 
@@ -148,3 +148,126 @@ Controls WHO can do WHAT:
 Authentication handled externally (token, cert, LDAP, etc.)
 
 ---
+
+
+# 🚀 Deploy MongoDB & Mongo Express on Minikube
+
+This guide walks you through running MongoDB and Mongo Express in a Minikube Kubernetes cluster.
+
+---
+
+## 📁 Required Files
+
+Make sure you have the following YAML files ready:
+
+- `mongo.yaml` – MongoDB Deployment and Service
+- `mongo-secret.yaml` – Secret with MongoDB credentials
+- `mongo-express.yaml` – Mongo Express Deployment and Service
+- `mongo-configmap.yaml` – ConfigMap with MongoDB hostname
+
+---
+
+## ✅ 1. Start Minikube
+
+```bash
+minikube start
+```
+
+> If you're using VirtualBox or another driver:
+
+```bash
+minikube start --driver=virtualbox
+```
+
+---
+
+## ✅ 2. Check Minikube Status
+
+```bash
+minikube status
+```
+
+---
+
+## ✅ 3. Apply the MongoDB Secret
+
+```bash
+kubectl apply -f mongo-secret.yaml
+```
+
+---
+
+## ✅ 4. Apply the MongoDB ConfigMap
+
+```bash
+kubectl apply -f mongo-configmap.yaml
+```
+
+---
+
+## ✅ 5. Deploy MongoDB
+
+```bash
+kubectl apply -f mongo.yaml
+```
+
+---
+
+## ✅ 6. Deploy Mongo Express
+
+```bash
+kubectl apply -f mongo-express.yaml
+```
+
+---
+
+## ✅ 7. Verify Everything is Running
+
+```bash
+kubectl get all
+```
+
+You should see `mongodb-deployment`, `mongo-express`, and both services.
+
+---
+
+## ✅ 8. Access Mongo Express in the Browser
+
+```bash
+minikube service mongo-express-service
+```
+
+If it doesn't open automatically:
+
+```bash
+minikube ip
+```
+
+Then visit:
+
+```
+http://<minikube-ip>:30000
+```
+
+---
+
+## 🔐 Mongo Express Login
+
+- **Username**: defined in `mongo-secret.yaml` (e.g., `username`)
+- **Password**: `password`
+
+---
+
+## 🧹 Clean Up Everything
+
+```bash
+kubectl delete -f mongo.yaml
+kubectl delete -f mongo-express.yaml
+kubectl delete -f mongo-secret.yaml
+kubectl delete -f mongo-configmap.yaml
+```
+
+---
+
+You now have a fully working MongoDB + Mongo Express setup on Minikube.
+
