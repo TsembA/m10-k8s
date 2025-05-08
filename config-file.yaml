@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config-file
+data:
+  mosquitto.conf:
+    log_dest stdout
+    log_type all
+    log_timestamp true
+    listener 9001
+
+
+# Secret and ConfigMap components are Local Volumes Types and can be mounted inside the container. PV
+# in k8s are use both both to create individual key pair that you can use as values of enviromental variables, fo example in your pods configuration
+# Or you can create files from them and then pass in as a configuration file to your application.
