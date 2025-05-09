@@ -20,7 +20,7 @@ This project sets up a **MongoDB ReplicaSet** with persistent volumes and a **Mo
 
 ---
 
-## 🔗 Visit: [http://123-456-789.linode-balancer] You can find this adress on Linode website in NodeBalancer tab
+## 🔗 Visit: [http://<host-address>.for-linode-balancer] You can find this adress on Linode website in NodeBalancer tab
 
 ---
 
